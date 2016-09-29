@@ -85,6 +85,7 @@ bool deleteNode(struct Node **head, Node *ptrDel) {
   }
   else if (ptrDel == *head ) {
     *head = ptrDel->next;
+    return true;
   } else {
     Node *nodeptr = *head;
     while (nodeptr->next != ptrDel) {
@@ -94,8 +95,8 @@ bool deleteNode(struct Node **head, Node *ptrDel) {
       }
     }
     nodeptr->next = nodeptr->next->next;
+    return true;
   }
-  return false;
 }
 
 /* reverse the list */
