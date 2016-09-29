@@ -17,6 +17,8 @@ struct Node {
  */
 void initNode(struct Node *head, int n) {
   //TODO: Initiliaze the node data to n and the next pointer to..?
+  head->data = n;
+  head->next = 0;
 }
 
 /**
@@ -25,7 +27,12 @@ void initNode(struct Node *head, int n) {
  * @param n - data that the new node should hold
  */
 void addNode(struct Node *head, int n) {
-  //TODO - Implement this function.
+  while(head->next != 0) {
+    head = head->next;
+  }
+  head->next = new Node;
+  head->next->next = 0;
+  head->next->data = n;
 }
 
 /**
@@ -34,7 +41,10 @@ void addNode(struct Node *head, int n) {
  * @param n - data that the new node should hold
  */
 void insertFront(struct Node **head, int n) {
-  //TODO
+  Node *newHead = new Node;
+  newHead->next = *head;
+  newHead->data = n;
+  *head = newHead;
 }
 
 /**
@@ -42,7 +52,12 @@ void insertFront(struct Node **head, int n) {
  * @param head  - pointer to the head of the list
  */
 void display(struct Node *head) {
-  //TODO
+  cout << '[';
+  while (head->next != 0) {
+    cout << head->data << ", ";
+    head = head->next;
+  }
+  cout << head->data << "]\n";
 }
 
 /**
@@ -52,8 +67,10 @@ void display(struct Node *head) {
  * @return - pointer to the node found.
  */
 struct Node *searchNode(struct Node *head, int n) {
-  //TODO
-  return NULL;
+  while (head != 0 && head->data !=n) {
+    head = head->next;
+  }
+  return head;
 }
 
 /**
@@ -63,7 +80,10 @@ struct Node *searchNode(struct Node *head, int n) {
  * @return - boolean that indicates if the deletion was successful
  */
 bool deleteNode(struct Node **head, Node *ptrDel) {
-  //TODO
+  if (ptrDel == *head && ptrDel->next == 0) {
+    return false; //don't delete head
+  }
+
   return false;
 }
 
@@ -130,7 +150,6 @@ int main() {
   struct Node *newHead;
   struct Node *head = new Node;
 
-  /*
   initNode(head,10);
   display(head);
 
@@ -189,6 +208,5 @@ int main() {
   cout << "Deleting the copied list\n";
   deleteLinkedList(&newHead);
   display(newHead);
-   */
   return 0;
 }
