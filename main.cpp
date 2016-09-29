@@ -69,10 +69,11 @@ void display(struct Node *head) {
  * @return - pointer to the node found.
  */
 struct Node *searchNode(struct Node *head, int n) {
-  while (head != 0 && head->data !=n) {
-    head = head->next;
+  Node *list = head;
+  while (list != 0 && list->data !=n) {
+    list = list->next;
   }
-  return head;
+  return list;
 }
 
 /**
