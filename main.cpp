@@ -83,22 +83,36 @@ struct Node *searchNode(struct Node *head, int n) {
  * @return - boolean that indicates if the deletion was successful
  */
 bool deleteNode(struct Node **head, Node *ptrDel) {
-  if (ptrDel == *head && ptrDel->next == 0) {
-    return false; //don't delete head
+  Node *list = *head;
+  Node *trail = 0;
+
+  if (list == 0) {
+    return false;
   }
-  else if (ptrDel == *head ) {
-    *head = ptrDel->next;
-    return true;
-  } else {
-    Node *nodeptr = *head;
-    while (nodeptr->next != ptrDel) {
-      nodeptr = nodeptr->next;
-      if (nodeptr == 0) {
-        return false;
+  else {
+    if (searchNode(*head,ptrDel->data) == 0) {
+      return false;
+    }
+    else {
+      if (list->data == ptrDel->data && list->next == 0) {
+        delete *head;
+        return true;
+      }
+      else if (list->data == ptrDel->data && list->next != 0) {
+        *head = list->next;
+        return true;
+      }
+      else {
+        while (list->next != 0) {
+          trail = list;
+          list = list->next;
+          if (list->data == ptrDel->data) {
+            trail->next = list->next;
+            return true;
+          }
+        }
       }
     }
-    nodeptr->next = nodeptr->next->next;
-    return true;
   }
 }
 
