@@ -27,12 +27,13 @@ void initNode(struct Node *head, int n) {
  * @param n - data that the new node should hold
  */
 void addNode(struct Node *head, int n) {
-  while(head->next != 0) {
-    head = head->next;
+  Node *list = head;
+  while(list->next != 0) {
+    list = list->next;
   }
-  head->next = new Node;
-  head->next->next = 0;
-  head->next->data = n;
+  list->next = new Node;
+  list->next->next = 0;
+  list->next->data = n;
 }
 
 /**
