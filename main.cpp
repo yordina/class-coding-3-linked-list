@@ -52,12 +52,13 @@ void insertFront(struct Node **head, int n) {
  * @param head  - pointer to the head of the list
  */
 void display(struct Node *head) {
+  Node *list = head;
   cout << '[';
-  while (head->next != 0) {
-    cout << head->data << ", ";
-    head = head->next;
+  while (list->next != 0) {
+    cout << list->data << ", ";
+    list = list->next;
   }
-  cout << head->data << "]\n";
+  cout << list->data << "]\n";
 }
 
 /**
