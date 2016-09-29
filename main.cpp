@@ -83,7 +83,18 @@ bool deleteNode(struct Node **head, Node *ptrDel) {
   if (ptrDel == *head && ptrDel->next == 0) {
     return false; //don't delete head
   }
-
+  else if (ptrDel == *head ) {
+    *head = ptrDel->next;
+  } else {
+    Node *nodeptr = *head;
+    while (nodeptr->next != ptrDel) {
+      nodeptr = nodeptr->next;
+      if (nodeptr == 0) {
+        return false;
+      }
+    }
+    nodeptr->next = nodeptr->next->next;
+  }
   return false;
 }
 
